@@ -1,0 +1,68 @@
+{
+  "name": "CoveNine",
+  "description": "Blank Process",
+  "main": "GetResponse.xaml",
+  "dependencies": {
+    "UiPath.Excel.Activities": "[2.9.3]",
+    "UiPath.GSuite.Activities": "[1.11.0]",
+    "UiPath.Mail.Activities": "[1.10.4]",
+    "UiPath.System.Activities": "[20.10.1]",
+    "UiPath.UIAutomation.Activities": "[20.10.6]",
+    "UiPath.WebAPI.Activities": "[1.7.0]",
+    "WhatsappActivity.Activities": "[1.0.0]"
+  },
+  "webServices": [],
+  "entitiesStores": [],
+  "schemaVersion": "4.0",
+  "studioVersion": "20.10.2.0",
+  "projectVersion": "1.0.9",
+  "runtimeOptions": {
+    "autoDispose": false,
+    "isPausable": true,
+    "requiresUserInteraction": true,
+    "supportsPersistence": false,
+    "excludedLoggedData": [
+      "Private:*",
+      "*password*"
+    ],
+    "executionType": "Workflow",
+    "readyForPiP": false,
+    "startsInPiP": false
+  },
+  "designOptions": {
+    "projectProfile": "Developement",
+    "outputType": "Process",
+    "libraryOptions": {
+      "includeOriginalXaml": false,
+      "privateWorkflows": []
+    },
+    "processOptions": {
+      "ignoredFiles": []
+    },
+    "fileInfoCollection": [],
+    "modernBehavior": false
+  },
+  "arguments": {
+    "input": [],
+    "output": []
+  },
+  "expressionLanguage": "VisualBasic",
+  "entryPoints": [
+    {
+      "filePath": "Main.xaml",
+      "uniqueId": "f2a64d19-4be2-4e61-a435-dd43a9ee2ebd",
+      "input": [],
+      "output": []
+    },
+    {
+      "filePath": "GetResponse.xaml",
+      "uniqueId": "11f3fd3f-18f9-4e1e-99a2-f9972a072929",
+      "input": [],
+      "output": []
+    }
+  ],
+  "isTemplate": false,
+  "templateProjectData": {},
+  "publishData": {},
+  "targetFramework": "Legacy"
+}

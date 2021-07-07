@@ -1,0 +1,619 @@
+<Activity mc:Ignorable="sap sap2010" x:Class="ProcessExistingRecords" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:mva="clr-namespace:Microsoft.VisualBasic.Activities;assembly=System.Activities" xmlns:njl="clr-namespace:Newtonsoft.Json.Linq;assembly=Newtonsoft.Json" xmlns:s="clr-namespace:System;assembly=mscorlib" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=mscorlib" xmlns:sd="clr-namespace:System.Data;assembly=System.Data" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <x:Members>
+    <x:Property Name="in_Config" Type="InArgument(scg:Dictionary(x:String, x:Object))" />
+  </x:Members>
+  <mva:VisualBasic.Settings>
+    <x:Null />
+  </mva:VisualBasic.Settings>
+  <sap:VirtualizedContainerService.HintSize>1124,3755</sap:VirtualizedContainerService.HintSize>
+  <sap2010:WorkflowViewState.IdRef>ProcessExistingRecords_1</sap2010:WorkflowViewState.IdRef>
+  <TextExpression.NamespacesForImplementation>
+    <scg:List x:TypeArguments="x:String" Capacity="39">
+      <x:String>System.Activities</x:String>
+      <x:String>System.Activities.Statements</x:String>
+      <x:String>System.Activities.Expressions</x:String>
+      <x:String>System.Activities.Validation</x:String>
+      <x:String>System.Activities.XamlIntegration</x:String>
+      <x:String>Microsoft.VisualBasic</x:String>
+      <x:String>Microsoft.VisualBasic.Activities</x:String>
+      <x:String>System</x:String>
+      <x:String>System.Collections</x:String>
+      <x:String>System.Collections.Generic</x:String>
+      <x:String>System.Data</x:String>
+      <x:String>System.Diagnostics</x:String>
+      <x:String>System.Drawing</x:String>
+      <x:String>System.IO</x:String>
+      <x:String>System.Linq</x:String>
+      <x:String>System.Net.Mail</x:String>
+      <x:String>System.Xml</x:String>
+      <x:String>System.Xml.Linq</x:String>
+      <x:String>UiPath.Core</x:String>
+      <x:String>UiPath.Core.Activities</x:String>
+      <x:String>System.Windows.Markup</x:String>
+      <x:String>System.Collections.ObjectModel</x:String>
+      <x:String>UiPath.Web</x:String>
+      <x:String>System.Runtime.Serialization</x:String>
+      <x:String>System.Security</x:String>
+      <x:String>Newtonsoft.Json.Linq</x:String>
+      <x:String>Newtonsoft.Json</x:String>
+      <x:String>System.Dynamic</x:String>
+      <x:String>System.ComponentModel</x:String>
+      <x:String>System.Collections.Specialized</x:String>
+      <x:String>System.Reflection</x:String>
+      <x:String>System.Runtime.InteropServices</x:String>
+      <x:String>System.Xml.Serialization</x:String>
+      <x:String>UiPath.Mail</x:String>
+      <x:String>System.Activities.DynamicUpdate</x:String>
+      <x:String>UiPath.Web.Activities</x:String>
+      <x:String>UiPath.Mail.SMTP.Activities</x:String>
+      <x:String>UiPath.Mail.Activities</x:String>
+      <x:String>UiPath.Core.Activities.Orchestrator</x:String>
+    </scg:List>
+  </TextExpression.NamespacesForImplementation>
+  <TextExpression.ReferencesForImplementation>
+    <scg:List x:TypeArguments="AssemblyReference" Capacity="66">
+      <AssemblyReference>System.Activities</AssemblyReference>
+      <AssemblyReference>Microsoft.VisualBasic</AssemblyReference>
+      <AssemblyReference>mscorlib</AssemblyReference>
+      <AssemblyReference>System.Data</AssemblyReference>
+      <AssemblyReference>System.Data.DataSetExtensions</AssemblyReference>
+      <AssemblyReference>System</AssemblyReference>
+      <AssemblyReference>System.Drawing</AssemblyReference>
+      <AssemblyReference>System.Core</AssemblyReference>
+      <AssemblyReference>System.Xml</AssemblyReference>
+      <AssemblyReference>System.Xml.Linq</AssemblyReference>
+      <AssemblyReference>PresentationFramework</AssemblyReference>
+      <AssemblyReference>WindowsBase</AssemblyReference>
+      <AssemblyReference>PresentationCore</AssemblyReference>
+      <AssemblyReference>System.Xaml</AssemblyReference>
+      <AssemblyReference>UiPath.System.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.UiAutomation.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.Web</AssemblyReference>
+      <AssemblyReference>System.Runtime.Serialization</AssemblyReference>
+      <AssemblyReference>Newtonsoft.Json</AssemblyReference>
+      <AssemblyReference>System.Memory</AssemblyReference>
+      <AssemblyReference>UiPath.Mail.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.Mail</AssemblyReference>
+      <AssemblyReference>UiPath.Web.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.Mail.Activities.Design</AssemblyReference>
+      <AssemblyReference>Microsoft.Bcl.AsyncInterfaces</AssemblyReference>
+      <AssemblyReference>System.ServiceModel</AssemblyReference>
+      <AssemblyReference>System.ValueTuple</AssemblyReference>
+      <AssemblyReference>UiPath.Excel</AssemblyReference>
+      <AssemblyReference>UiPath.GSuite.Activities.Design</AssemblyReference>
+      <AssemblyReference>UiPath.OCR.Activities.Design</AssemblyReference>
+      <AssemblyReference>UiPath.UIAutomationCore</AssemblyReference>
+      <AssemblyReference>System.ComponentModel.Composition</AssemblyReference>
+      <AssemblyReference>UiPath.System.Activities.Design</AssemblyReference>
+      <AssemblyReference>System.Runtime.WindowsRuntime</AssemblyReference>
+    </scg:List>
+  </TextExpression.ReferencesForImplementation>
+  <Sequence DisplayName="ProcessExistingRecords" sap:VirtualizedContainerService.HintSize="1134,3690" sap2010:WorkflowViewState.IdRef="Sequence_1">
+    <Sequence.Variables>
+      <Variable x:TypeArguments="ui:QueueItem" Name="transactionItem" />
+      <Variable x:TypeArguments="scg:IEnumerable(ui:QueueItem)" Name="queueItems" />
+      <Variable x:TypeArguments="x:Int32" Name="numberOfQueueItem" />
+      <Variable x:TypeArguments="njl:JObject" Name="resObj" />
+      <Variable x:TypeArguments="x:String" Name="res" />
+      <Variable x:TypeArguments="sd:DataTable" Name="dt" />
+      <Variable x:TypeArguments="x:String" Name="ageOfPerson" />
+      <Variable x:TypeArguments="x:String" Name="startLine" />
+      <Variable x:TypeArguments="njl:JArray" Name="jsonArray" />
+      <Variable x:TypeArguments="x:String" Name="sessionArray" />
+      <Variable x:TypeArguments="x:String" Name="hospitalName" />
+      <Variable x:TypeArguments="s:DateTime" Name="limitDate" />
+      <Variable x:TypeArguments="x:String" Name="dateOfVaccine" />
+      <Variable x:TypeArguments="x:String" Name="numberOfShots" />
+      <Variable x:TypeArguments="x:String" Name="minAge" />
+      <Variable x:TypeArguments="x:TimeSpan" Name="timeSpan" />
+      <Variable x:TypeArguments="x:String" Name="noSlotMsg" />
+      <Variable x:TypeArguments="x:Boolean" Name="singleAgeGroup" />
+      <Variable x:TypeArguments="x:String" Name="vaccineName" />
+      <Variable x:TypeArguments="x:String" Name="dateNumber" />
+    </Sequence.Variables>
+    <sap:WorkflowViewStateService.ViewState>
+      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+      </scg:Dictionary>
+    </sap:WorkflowViewStateService.ViewState>
+    <ui:GetQueueItems Duration="{x:Null}" From="{x:Null}" Priority="{x:Null}" Reference="{x:Null}" Skip="{x:Null}" TimeoutMS="{x:Null}" To="{x:Null}" Top="{x:Null}" DisplayName="Get Queue Items" FilterStrategy="Equals" FolderPath="[in_Config(&quot;OrchestratorFolderPath&quot;).ToString]" sap:VirtualizedContainerService.HintSize="1092,79" sap2010:WorkflowViewState.IdRef="GetQueueItems_1" QueueItemStates="New" QueueName="[in_Config(&quot;OrchestratorQueueName&quot;).ToString]" Result="[queueItems]" />
+    <Assign sap:VirtualizedContainerService.HintSize="1092,60" sap2010:WorkflowViewState.IdRef="Assign_15">
+      <Assign.To>
+        <OutArgument x:TypeArguments="x:Int32">[numberOfQueueItem]</OutArgument>
+      </Assign.To>
+      <Assign.Value>
+        <InArgument x:TypeArguments="x:Int32">[queueItems.Count]</InArgument>
+      </Assign.Value>
+    </Assign>
+    <ui:InterruptibleWhile DisplayName="While" sap:VirtualizedContainerService.HintSize="1092,3379" sap2010:WorkflowViewState.IdRef="InterruptibleWhile_2">
+      <ui:InterruptibleWhile.Body>
+        <Sequence DisplayName="Body" sap:VirtualizedContainerService.HintSize="1056,3214" sap2010:WorkflowViewState.IdRef="Sequence_27">
+          <sap:WorkflowViewStateService.ViewState>
+            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+              <x:Boolean x:Key="IsPinned">False</x:Boolean>
+            </scg:Dictionary>
+          </sap:WorkflowViewStateService.ViewState>
+          <Assign sap:VirtualizedContainerService.HintSize="1014,60" sap2010:WorkflowViewState.IdRef="Assign_16">
+            <Assign.To>
+              <OutArgument x:TypeArguments="x:Int32">[numberOfQueueItem]</OutArgument>
+            </Assign.To>
+            <Assign.Value>
+              <InArgument x:TypeArguments="x:Int32">[numberOfQueueItem-1]</InArgument>
+            </Assign.Value>
+          </Assign>
+          <ui:GetQueueItem ContinueOnError="{x:Null}" TimeoutMS="{x:Null}" DisplayName="Get Transaction Item" FilterStrategy="Equals" FolderPath="[in_Config(&quot;OrchestratorFolderPath&quot;).ToString]" sap:VirtualizedContainerService.HintSize="1014,22" sap2010:WorkflowViewState.IdRef="GetQueueItem_3" QueueType="[in_Config(&quot;OrchestratorQueueName&quot;).ToString]" TransactionItem="[transactionItem]" />
+          <If Condition="[transactionItem isnot Nothing]" sap:VirtualizedContainerService.HintSize="1014,2960" sap2010:WorkflowViewState.IdRef="If_18">
+            <sap:WorkflowViewStateService.ViewState>
+              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                <x:Boolean x:Key="IsPinned">False</x:Boolean>
+              </scg:Dictionary>
+            </sap:WorkflowViewStateService.ViewState>
+            <If.Then>
+              <Sequence sap:VirtualizedContainerService.HintSize="869,2784" sap2010:WorkflowViewState.IdRef="Sequence_34">
+                <sap:WorkflowViewStateService.ViewState>
+                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                    <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                  </scg:Dictionary>
+                </sap:WorkflowViewStateService.ViewState>
+                <ui:HttpClient Body="{x:Null}" ConsumerKey="{x:Null}" ConsumerSecret="{x:Null}" ContinueOnError="{x:Null}" OAuth1Token="{x:Null}" OAuth1TokenSecret="{x:Null}" OAuth2Token="{x:Null}" Password="{x:Null}" ResourcePath="{x:Null}" ResponseHeaders="{x:Null}" SecureClientCertificatePassword="{x:Null}" SecurePassword="{x:Null}" StatusCode="{x:Null}" Username="{x:Null}" AcceptFormat="ANY" BodyFormat="application/xml" ClientCertificate="[Nothing]" ClientCertificatePassword="[Nothing]" DisplayName="HTTP Request" EndPoint="[&quot;https://cdn-api.co-vin.in/api/v2/appointment/sessions/public/calendarByPin?pincode=&quot;+transactionItem.SpecificContent(&quot;pincode&quot;).ToString+&quot;&amp;date=&quot;+DateTime.Now.ToString(&quot;dd-MM-yyyy&quot;)]" sap:VirtualizedContainerService.HintSize="827,22" sap2010:WorkflowViewState.IdRef="HttpClient_2" Method="GET" Result="[res]" TimeoutMS="6000">
+                  <ui:HttpClient.Attachments>
+                    <scg:Dictionary x:TypeArguments="x:String, InArgument(x:String)" />
+                  </ui:HttpClient.Attachments>
+                  <ui:HttpClient.Cookies>
+                    <scg:Dictionary x:TypeArguments="x:String, InArgument(x:String)" />
+                  </ui:HttpClient.Cookies>
+                  <ui:HttpClient.Headers>
+                    <scg:Dictionary x:TypeArguments="x:String, InArgument(x:String)" />
+                  </ui:HttpClient.Headers>
+                  <ui:HttpClient.Parameters>
+                    <scg:Dictionary x:TypeArguments="x:String, InArgument(x:String)" />
+                  </ui:HttpClient.Parameters>
+                  <ui:HttpClient.UrlSegments>
+                    <scg:Dictionary x:TypeArguments="x:String, InArgument(x:String)" />
+                  </ui:HttpClient.UrlSegments>
+                </ui:HttpClient>
+                <If Condition="[res is Nothing]" sap:VirtualizedContainerService.HintSize="827,2630" sap2010:WorkflowViewState.IdRef="If_14">
+                  <sap:WorkflowViewStateService.ViewState>
+                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                      <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                    </scg:Dictionary>
+                  </sap:WorkflowViewStateService.ViewState>
+                  <If.Else>
+                    <Sequence sap:VirtualizedContainerService.HintSize="682,2473" sap2010:WorkflowViewState.IdRef="Sequence_28">
+                      <sap:WorkflowViewStateService.ViewState>
+                        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                        </scg:Dictionary>
+                      </sap:WorkflowViewStateService.ViewState>
+                      <ui:BuildDataTable DataTable="[dt]" DisplayName="Build Data Table" sap:VirtualizedContainerService.HintSize="640,51" sap2010:WorkflowViewState.IdRef="BuildDataTable_2" TableInfo="&lt;NewDataSet&gt;&#xA;  &lt;xs:schema id=&quot;NewDataSet&quot; xmlns=&quot;&quot; xmlns:xs=&quot;http://www.w3.org/2001/XMLSchema&quot; xmlns:msdata=&quot;urn:schemas-microsoft-com:xml-msdata&quot;&gt;&#xA;    &lt;xs:element name=&quot;NewDataSet&quot; msdata:IsDataSet=&quot;true&quot; msdata:MainDataTable=&quot;TableName&quot; msdata:UseCurrentLocale=&quot;true&quot;&gt;&#xA;      &lt;xs:complexType&gt;&#xA;        &lt;xs:choice minOccurs=&quot;0&quot; maxOccurs=&quot;unbounded&quot;&gt;&#xA;          &lt;xs:element name=&quot;TableName&quot;&gt;&#xA;            &lt;xs:complexType&gt;&#xA;              &lt;xs:sequence&gt;&#xA;                &lt;xs:element name=&quot;Name&quot; msdata:Caption=&quot;&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; /&gt;&#xA;                &lt;xs:element name=&quot;Contact&quot; msdata:Caption=&quot;&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; /&gt;&#xA;                &lt;xs:element name=&quot;Email&quot; msdata:Caption=&quot;&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; /&gt;&#xA;                &lt;xs:element name=&quot;Date_x0028_only_x0020_DD_x0029_&quot; msdata:Caption=&quot;&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; /&gt;&#xA;                &lt;xs:element name=&quot;DetailsOfMessage&quot; msdata:Caption=&quot;&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; /&gt;&#xA;                &lt;xs:element name=&quot;DateDescription&quot; msdata:Caption=&quot;&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; /&gt;&#xA;              &lt;/xs:sequence&gt;&#xA;            &lt;/xs:complexType&gt;&#xA;          &lt;/xs:element&gt;&#xA;        &lt;/xs:choice&gt;&#xA;      &lt;/xs:complexType&gt;&#xA;    &lt;/xs:element&gt;&#xA;  &lt;/xs:schema&gt;&#xA;&lt;/NewDataSet&gt;">
+                        <sap:WorkflowViewStateService.ViewState>
+                          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                            <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                            <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                          </scg:Dictionary>
+                        </sap:WorkflowViewStateService.ViewState>
+                      </ui:BuildDataTable>
+                      <ui:DeserializeJson x:TypeArguments="njl:JObject" DisplayName="Deserialize JSON" sap:VirtualizedContainerService.HintSize="640,59" sap2010:WorkflowViewState.IdRef="DeserializeJson`1_2" JsonObject="[resObj]" JsonString="[res]">
+                        <sap:WorkflowViewStateService.ViewState>
+                          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                            <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                            <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                          </scg:Dictionary>
+                        </sap:WorkflowViewStateService.ViewState>
+                      </ui:DeserializeJson>
+                      <ui:InvokeCode ContinueOnError="{x:Null}" Code="If in_Age.Equals(&quot;18 - 45&quot;)&#xA;out_singleAgeGroup = True&#xA;out_minAge = &quot;18&quot;&#xA;Else If in_Age.Equals(&quot;&gt; 45, 18 - 45&quot;)&#xA;&#x9;out_singleAgeGroup = False&#xA;Else&#xA;&#x9;out_singleAgeGroup = True&#xA;&#x9;out_minAge = &quot;45&quot;&#xA;End If&#xA;" DisplayName="Invoke code" sap:VirtualizedContainerService.HintSize="640,164" sap2010:WorkflowViewState.IdRef="InvokeCode_1">
+                        <ui:InvokeCode.Arguments>
+                          <InArgument x:TypeArguments="x:String" x:Key="in_Age">[transactionItem.SpecificContent("Age").ToString]</InArgument>
+                          <OutArgument x:TypeArguments="x:Boolean" x:Key="out_singleAgeGroup">[singleAgeGroup]</OutArgument>
+                          <OutArgument x:TypeArguments="x:String" x:Key="out_minAge">[ageOfPerson]</OutArgument>
+                        </ui:InvokeCode.Arguments>
+                      </ui:InvokeCode>
+                      <If Condition="[singleAgeGroup]" sap:VirtualizedContainerService.HintSize="640,51" sap2010:WorkflowViewState.IdRef="If_19">
+                        <sap:WorkflowViewStateService.ViewState>
+                          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                            <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                            <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                          </scg:Dictionary>
+                        </sap:WorkflowViewStateService.ViewState>
+                        <If.Else>
+                          <ui:BuildDataTable DataTable="[dt]" DisplayName="Build Data Table" sap:VirtualizedContainerService.HintSize="334,59" sap2010:WorkflowViewState.IdRef="BuildDataTable_3" TableInfo="&lt;NewDataSet&gt;&#xA;  &lt;xs:schema id=&quot;NewDataSet&quot; xmlns=&quot;&quot; xmlns:xs=&quot;http://www.w3.org/2001/XMLSchema&quot; xmlns:msdata=&quot;urn:schemas-microsoft-com:xml-msdata&quot;&gt;&#xA;    &lt;xs:element name=&quot;NewDataSet&quot; msdata:IsDataSet=&quot;true&quot; msdata:MainDataTable=&quot;TableName&quot; msdata:UseCurrentLocale=&quot;true&quot;&gt;&#xA;      &lt;xs:complexType&gt;&#xA;        &lt;xs:choice minOccurs=&quot;0&quot; maxOccurs=&quot;unbounded&quot;&gt;&#xA;          &lt;xs:element name=&quot;TableName&quot;&gt;&#xA;            &lt;xs:complexType&gt;&#xA;              &lt;xs:sequence&gt;&#xA;                &lt;xs:element name=&quot;Name&quot; msdata:Caption=&quot;&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; /&gt;&#xA;                &lt;xs:element name=&quot;Contact&quot; msdata:Caption=&quot;&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; /&gt;&#xA;                &lt;xs:element name=&quot;Email&quot; msdata:Caption=&quot;&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; /&gt;&#xA;                &lt;xs:element name=&quot;DateNum&quot; msdata:Caption=&quot;&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; /&gt;&#xA;                &lt;xs:element name=&quot;FullDate&quot; msdata:Caption=&quot;&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; /&gt;&#xA;                &lt;xs:element name=&quot;MinAge&quot; msdata:Caption=&quot;&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; /&gt;&#xA;                &lt;xs:element name=&quot;HospitalName&quot; msdata:Caption=&quot;&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; /&gt;&#xA;                &lt;xs:element name=&quot;VaccineName&quot; msdata:Caption=&quot;&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; /&gt;&#xA;                &lt;xs:element name=&quot;AvailableShots&quot; msdata:Caption=&quot;&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; /&gt;&#xA;              &lt;/xs:sequence&gt;&#xA;            &lt;/xs:complexType&gt;&#xA;          &lt;/xs:element&gt;&#xA;        &lt;/xs:choice&gt;&#xA;      &lt;/xs:complexType&gt;&#xA;    &lt;/xs:element&gt;&#xA;  &lt;/xs:schema&gt;&#xA;&lt;/NewDataSet&gt;">
+                            <sap:WorkflowViewStateService.ViewState>
+                              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                              </scg:Dictionary>
+                            </sap:WorkflowViewStateService.ViewState>
+                          </ui:BuildDataTable>
+                        </If.Else>
+                      </If>
+                      <Assign sap:VirtualizedContainerService.HintSize="640,60" sap2010:WorkflowViewState.IdRef="Assign_17">
+                        <Assign.To>
+                          <OutArgument x:TypeArguments="x:String">[startLine]</OutArgument>
+                        </Assign.To>
+                        <Assign.Value>
+                          <InArgument x:TypeArguments="x:String">["Dear " +transactionItem.SpecificContent("Name").ToString+","+Environment.NewLine+"Below are the vacant slots In your district For upcoming days : "+Environment.NewLine+Environment.NewLine+"{slot}"+Environment.NewLine+"Kindly login To cowin.gov.in To book your desired slot."+Environment.NewLine+"Keep calm And Get yourself vaccinated."+Environment.NewLine+Environment.NewLine+"Regards,"+Environment.NewLine+"UiPath-Covenine Robot"]</InArgument>
+                        </Assign.Value>
+                      </Assign>
+                      <ui:ForEach x:TypeArguments="njl:JObject" CurrentIndex="{x:Null}" DisplayName="For Each" sap:VirtualizedContainerService.HintSize="640,1356" sap2010:WorkflowViewState.IdRef="ForEach`1_6" Values="[resObj(&quot;centers&quot;).ToList]">
+                        <ui:ForEach.Body>
+                          <ActivityAction x:TypeArguments="njl:JObject">
+                            <ActivityAction.Argument>
+                              <DelegateInArgument x:TypeArguments="njl:JObject" Name="item" />
+                            </ActivityAction.Argument>
+                            <Sequence DisplayName="Body" sap:VirtualizedContainerService.HintSize="604,1223" sap2010:WorkflowViewState.IdRef="Sequence_39">
+                              <sap:WorkflowViewStateService.ViewState>
+                                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                  <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                  <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                                </scg:Dictionary>
+                              </sap:WorkflowViewStateService.ViewState>
+                              <Assign sap:VirtualizedContainerService.HintSize="562,60" sap2010:WorkflowViewState.IdRef="Assign_31">
+                                <Assign.To>
+                                  <OutArgument x:TypeArguments="x:String">[hospitalName]</OutArgument>
+                                </Assign.To>
+                                <Assign.Value>
+                                  <InArgument x:TypeArguments="x:String">[item("name").ToString]</InArgument>
+                                </Assign.Value>
+                              </Assign>
+                              <Assign sap:VirtualizedContainerService.HintSize="562,60" sap2010:WorkflowViewState.IdRef="Assign_32">
+                                <Assign.To>
+                                  <OutArgument x:TypeArguments="x:String">[sessionArray]</OutArgument>
+                                </Assign.To>
+                                <Assign.Value>
+                                  <InArgument x:TypeArguments="x:String">[item("sessions").ToString]</InArgument>
+                                </Assign.Value>
+                              </Assign>
+                              <ui:DeserializeJsonArray DisplayName="Deserialize JSON Array" sap:VirtualizedContainerService.HintSize="562,59" sap2010:WorkflowViewState.IdRef="DeserializeJsonArray_3" JsonArray="[jsonArray]" JsonString="[sessionArray]">
+                                <sap:WorkflowViewStateService.ViewState>
+                                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                    <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                    <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                                  </scg:Dictionary>
+                                </sap:WorkflowViewStateService.ViewState>
+                              </ui:DeserializeJsonArray>
+                              <ui:ForEach x:TypeArguments="njl:JObject" CurrentIndex="{x:Null}" DisplayName="For Each" sap:VirtualizedContainerService.HintSize="562,832" sap2010:WorkflowViewState.IdRef="ForEach`1_5" Values="[jsonArray]">
+                                <ui:ForEach.Body>
+                                  <ActivityAction x:TypeArguments="njl:JObject">
+                                    <ActivityAction.Argument>
+                                      <DelegateInArgument x:TypeArguments="njl:JObject" Name="item" />
+                                    </ActivityAction.Argument>
+                                    <Sequence DisplayName="Body" sap:VirtualizedContainerService.HintSize="526,699" sap2010:WorkflowViewState.IdRef="Sequence_38">
+                                      <sap:WorkflowViewStateService.ViewState>
+                                        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                          <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                                        </scg:Dictionary>
+                                      </sap:WorkflowViewStateService.ViewState>
+                                      <Assign sap:VirtualizedContainerService.HintSize="484,60" sap2010:WorkflowViewState.IdRef="Assign_33">
+                                        <Assign.To>
+                                          <OutArgument x:TypeArguments="x:String">[minAge]</OutArgument>
+                                        </Assign.To>
+                                        <Assign.Value>
+                                          <InArgument x:TypeArguments="x:String">[item("min_age_limit").ToString]</InArgument>
+                                        </Assign.Value>
+                                      </Assign>
+                                      <Assign sap:VirtualizedContainerService.HintSize="484,60" sap2010:WorkflowViewState.IdRef="Assign_34">
+                                        <Assign.To>
+                                          <OutArgument x:TypeArguments="x:String">[numberOfShots]</OutArgument>
+                                        </Assign.To>
+                                        <Assign.Value>
+                                          <InArgument x:TypeArguments="x:String">[item("available_capacity").ToString]</InArgument>
+                                        </Assign.Value>
+                                      </Assign>
+                                      <Assign sap:VirtualizedContainerService.HintSize="484,60" sap2010:WorkflowViewState.IdRef="Assign_35">
+                                        <Assign.To>
+                                          <OutArgument x:TypeArguments="x:String">[dateOfVaccine]</OutArgument>
+                                        </Assign.To>
+                                        <Assign.Value>
+                                          <InArgument x:TypeArguments="x:String">[Date.ParseExact(item("date").ToString,"dd-MM-yyyy",System.Globalization.CultureInfo.InvariantCulture).ToLongDateString.ToString]</InArgument>
+                                        </Assign.Value>
+                                      </Assign>
+                                      <Assign sap:VirtualizedContainerService.HintSize="484,60" sap2010:WorkflowViewState.IdRef="Assign_36">
+                                        <Assign.To>
+                                          <OutArgument x:TypeArguments="s:DateTime">[limitDate]</OutArgument>
+                                        </Assign.To>
+                                        <Assign.Value>
+                                          <InArgument x:TypeArguments="s:DateTime">[Date.ParseExact(item("date").ToString,"dd-MM-yyyy",System.Globalization.CultureInfo.InvariantCulture)]</InArgument>
+                                        </Assign.Value>
+                                      </Assign>
+                                      <If Condition="[singleAgeGroup]" sap:VirtualizedContainerService.HintSize="484,207" sap2010:WorkflowViewState.IdRef="If_22">
+                                        <sap:WorkflowViewStateService.ViewState>
+                                          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                            <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                                          </scg:Dictionary>
+                                        </sap:WorkflowViewStateService.ViewState>
+                                        <If.Then>
+                                          <If Condition="[(minAge.Equals(ageOfPerson) and Convert.ToInt32(numberOfShots)&gt;0)]" sap:VirtualizedContainerService.HintSize="200,51" sap2010:WorkflowViewState.IdRef="If_20">
+                                            <sap:WorkflowViewStateService.ViewState>
+                                              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                                <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                                                <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                                              </scg:Dictionary>
+                                            </sap:WorkflowViewStateService.ViewState>
+                                            <If.Then>
+                                              <Sequence sap:VirtualizedContainerService.HintSize="376,445" sap2010:WorkflowViewState.IdRef="Sequence_36">
+                                                <Sequence.Variables>
+                                                  <Variable x:TypeArguments="x:String" Name="dateNumber" />
+                                                </Sequence.Variables>
+                                                <sap:WorkflowViewStateService.ViewState>
+                                                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                                    <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                                    <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                                                  </scg:Dictionary>
+                                                </sap:WorkflowViewStateService.ViewState>
+                                                <Assign sap:VirtualizedContainerService.HintSize="334,60" sap2010:WorkflowViewState.IdRef="Assign_37">
+                                                  <Assign.To>
+                                                    <OutArgument x:TypeArguments="x:String">[dateNumber]</OutArgument>
+                                                  </Assign.To>
+                                                  <Assign.Value>
+                                                    <InArgument x:TypeArguments="x:String">[Date.ParseExact(item("date").ToString,"dd-MM-yyyy",System.Globalization.CultureInfo.InvariantCulture).Day.ToString]</InArgument>
+                                                  </Assign.Value>
+                                                </Assign>
+                                                <Assign sap:VirtualizedContainerService.HintSize="334,60" sap2010:WorkflowViewState.IdRef="Assign_38">
+                                                  <Assign.To>
+                                                    <OutArgument x:TypeArguments="x:String">[vaccineName]</OutArgument>
+                                                  </Assign.To>
+                                                  <Assign.Value>
+                                                    <InArgument x:TypeArguments="x:String">[item("vaccine").ToString]</InArgument>
+                                                  </Assign.Value>
+                                                </Assign>
+                                                <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="334,91" sap2010:WorkflowViewState.IdRef="LogMessage_8" Level="Info" Message="[&quot;Slot Found : &quot;+minAge +&quot; &quot;+dateOfVaccine+&quot; &quot;+vaccineName]" />
+                                                <ui:AddDataRow DataRow="{x:Null}" ArrayRow="[{transactionItem.SpecificContent(&quot;Name&quot;).ToString,transactionItem.SpecificContent(&quot;contact&quot;).ToString,transactionItem.SpecificContent(&quot;Email&quot;).ToString,dateNumber,&quot;On &quot;+dateOfVaccine, &quot;There are &quot;+numberOfShots+&quot; slots available at &quot; +hospitalName +&quot; for &quot;+vaccineName+&quot;.&quot;}]" DataTable="[dt]" DisplayName="Add Data Row" sap:VirtualizedContainerService.HintSize="334,22" sap2010:WorkflowViewState.IdRef="AddDataRow_3" />
+                                              </Sequence>
+                                            </If.Then>
+                                          </If>
+                                        </If.Then>
+                                        <If.Else>
+                                          <If Condition="[(Convert.ToInt32(numberOfShots)&gt;0)]" sap:VirtualizedContainerService.HintSize="200,51" sap2010:WorkflowViewState.IdRef="If_21">
+                                            <sap:WorkflowViewStateService.ViewState>
+                                              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                                <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                                                <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                                              </scg:Dictionary>
+                                            </sap:WorkflowViewStateService.ViewState>
+                                            <If.Then>
+                                              <Sequence sap:VirtualizedContainerService.HintSize="376,445" sap2010:WorkflowViewState.IdRef="Sequence_37">
+                                                <Sequence.Variables>
+                                                  <Variable x:TypeArguments="x:String" Name="dateNumber" />
+                                                </Sequence.Variables>
+                                                <sap:WorkflowViewStateService.ViewState>
+                                                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                                    <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                                    <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                                                  </scg:Dictionary>
+                                                </sap:WorkflowViewStateService.ViewState>
+                                                <Assign sap:VirtualizedContainerService.HintSize="334,60" sap2010:WorkflowViewState.IdRef="Assign_39">
+                                                  <Assign.To>
+                                                    <OutArgument x:TypeArguments="x:String">[dateNumber]</OutArgument>
+                                                  </Assign.To>
+                                                  <Assign.Value>
+                                                    <InArgument x:TypeArguments="x:String">[Date.ParseExact(item("date").ToString,"dd-MM-yyyy",System.Globalization.CultureInfo.InvariantCulture).Day.ToString]</InArgument>
+                                                  </Assign.Value>
+                                                </Assign>
+                                                <Assign sap:VirtualizedContainerService.HintSize="334,60" sap2010:WorkflowViewState.IdRef="Assign_40">
+                                                  <Assign.To>
+                                                    <OutArgument x:TypeArguments="x:String">[vaccineName]</OutArgument>
+                                                  </Assign.To>
+                                                  <Assign.Value>
+                                                    <InArgument x:TypeArguments="x:String">[item("vaccine").ToString]</InArgument>
+                                                  </Assign.Value>
+                                                </Assign>
+                                                <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="334,91" sap2010:WorkflowViewState.IdRef="LogMessage_9" Level="Info" Message="[&quot;Slot Found : &quot;+minAge +&quot; &quot;+dateOfVaccine+&quot; &quot;+vaccineName]" />
+                                                <ui:AddDataRow DataRow="{x:Null}" ArrayRow="[{transactionItem.SpecificContent(&quot;Name&quot;).ToString,transactionItem.SpecificContent(&quot;contact&quot;).ToString,transactionItem.SpecificContent(&quot;Email&quot;).ToString,dateNumber,dateOfVaccine,minAge,hospitalName,vaccineName,numberOfShots}]" DataTable="[dt]" DisplayName="Add Data Row" sap:VirtualizedContainerService.HintSize="334,22" sap2010:WorkflowViewState.IdRef="AddDataRow_4" />
+                                              </Sequence>
+                                            </If.Then>
+                                          </If>
+                                        </If.Else>
+                                      </If>
+                                    </Sequence>
+                                  </ActivityAction>
+                                </ui:ForEach.Body>
+                                <sap:WorkflowViewStateService.ViewState>
+                                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                    <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                    <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                                  </scg:Dictionary>
+                                </sap:WorkflowViewStateService.ViewState>
+                              </ui:ForEach>
+                            </Sequence>
+                          </ActivityAction>
+                        </ui:ForEach.Body>
+                        <sap:WorkflowViewStateService.ViewState>
+                          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                            <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                          </scg:Dictionary>
+                        </sap:WorkflowViewStateService.ViewState>
+                      </ui:ForEach>
+                      <If Condition="[dt.Rows.Count=0]" sap:VirtualizedContainerService.HintSize="640,400" sap2010:WorkflowViewState.IdRef="If_25">
+                        <sap:WorkflowViewStateService.ViewState>
+                          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                            <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                          </scg:Dictionary>
+                        </sap:WorkflowViewStateService.ViewState>
+                        <If.Then>
+                          <Sequence sap:VirtualizedContainerService.HintSize="304,243" sap2010:WorkflowViewState.IdRef="Sequence_44">
+                            <sap:WorkflowViewStateService.ViewState>
+                              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                              </scg:Dictionary>
+                            </sap:WorkflowViewStateService.ViewState>
+                            <Assign sap:VirtualizedContainerService.HintSize="262,60" sap2010:WorkflowViewState.IdRef="Assign_41">
+                              <Assign.To>
+                                <OutArgument x:TypeArguments="x:String">[noSlotMsg]</OutArgument>
+                              </Assign.To>
+                              <Assign.Value>
+                                <InArgument x:TypeArguments="x:String">[in_Config("SlotNotFound").ToString.Replace("{user}",transactionItem.SpecificContent("Name").ToString)]</InArgument>
+                              </Assign.Value>
+                            </Assign>
+                            <If Condition="[string.IsNullOrEmpty(transactionItem.Progress)]" sap:VirtualizedContainerService.HintSize="484,224" sap2010:WorkflowViewState.IdRef="If_24">
+                              <sap:WorkflowViewStateService.ViewState>
+                                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                  <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                                  <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                                </scg:Dictionary>
+                              </sap:WorkflowViewStateService.ViewState>
+                              <If.Then>
+                                <Sequence sap:VirtualizedContainerService.HintSize="200,66" sap2010:WorkflowViewState.IdRef="Sequence_46">
+                                  <sap:WorkflowViewStateService.ViewState>
+                                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                      <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                                      <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                                    </scg:Dictionary>
+                                  </sap:WorkflowViewStateService.ViewState>
+                                  <ui:SendMail Bcc="{x:Null}" Cc="{x:Null}" From="{x:Null}" MailMessage="{x:Null}" Name="{x:Null}" ReplyTo="{x:Null}" SecurePassword="{x:Null}" TimeoutMS="{x:Null}" Body="[noSlotMsg]" DisplayName="Send SMTP Mail Message" Email="[in_Config(&quot;EmailFrom&quot;).ToString]" EnableSSL="True" sap:VirtualizedContainerService.HintSize="334,145" sap2010:WorkflowViewState.IdRef="SendMail_13" IsBodyHtml="True" Password="mgcgnpaemspqyjox" Port="[Convert.ToInt32(in_Config(&quot;PortNumber&quot;))]" SecureConnection="Auto" Server="smtp.gmail.com" Subject="[in_Config(&quot;EmailSubjectToUser&quot;).toString + Now.ToString(&quot; dd_MM_yyyy HH_mm_ss&quot;)]" To="[transactionItem.SpecificContent(&quot;Email&quot;).ToString]">
+                                    <ui:SendMail.Files>
+                                      <scg:List x:TypeArguments="InArgument(x:String)" Capacity="0" />
+                                    </ui:SendMail.Files>
+                                    <sap:WorkflowViewStateService.ViewState>
+                                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                        <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                                      </scg:Dictionary>
+                                    </sap:WorkflowViewStateService.ViewState>
+                                  </ui:SendMail>
+                                  <ui:SetTransactionProgress TimeoutMS="{x:Null}" DisplayName="Set Transaction Progress" FolderPath="[in_Config(&quot;OrchestratorFolderPath&quot;).ToString]" sap:VirtualizedContainerService.HintSize="334,132" sap2010:WorkflowViewState.IdRef="SetTransactionProgress_9" Progress="[DateTime.Now.ToUniversalTime.ToString]" TransactionItem="[transactionItem]" />
+                                  <ui:PostponeTransactionItem ContinueOnError="{x:Null}" TimeoutMS="{x:Null}" DeferDate="[DateTime.now.ToUniversalTime.AddHours(2)]" DisplayName="Postpone Transaction Item" FolderPath="[in_Config(&quot;OrchestratorFolderPath&quot;).ToString]" sap:VirtualizedContainerService.HintSize="334,79" sap2010:WorkflowViewState.IdRef="PostponeTransactionItem_12" TransactionItem="[transactionItem]" />
+                                </Sequence>
+                              </If.Then>
+                              <If.Else>
+                                <Sequence sap:VirtualizedContainerService.HintSize="376,374" sap2010:WorkflowViewState.IdRef="Sequence_43">
+                                  <sap:WorkflowViewStateService.ViewState>
+                                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                      <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                                      <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                                    </scg:Dictionary>
+                                  </sap:WorkflowViewStateService.ViewState>
+                                  <Assign sap:VirtualizedContainerService.HintSize="334,60" sap2010:WorkflowViewState.IdRef="Assign_42">
+                                    <Assign.To>
+                                      <OutArgument x:TypeArguments="x:TimeSpan">[timeSpan]</OutArgument>
+                                    </Assign.To>
+                                    <Assign.Value>
+                                      <InArgument x:TypeArguments="x:TimeSpan">[DateTime.Today.ToUniversalTime - Convert.ToDateTime(transactionItem.Progress)]</InArgument>
+                                    </Assign.Value>
+                                  </Assign>
+                                  <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="334,91" sap2010:WorkflowViewState.IdRef="LogMessage_10" Level="Info" Message="[&quot;Timespan in hours is :&quot;+timeSpan.TotalHours.ToString]" />
+                                  <If Condition="[timeSpan.TotalHours &lt;= 23]" sap:VirtualizedContainerService.HintSize="484,224" sap2010:WorkflowViewState.IdRef="If_23">
+                                    <sap:WorkflowViewStateService.ViewState>
+                                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                        <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                                        <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                                      </scg:Dictionary>
+                                    </sap:WorkflowViewStateService.ViewState>
+                                    <If.Then>
+                                      <Sequence sap:VirtualizedContainerService.HintSize="200,66" sap2010:WorkflowViewState.IdRef="Sequence_47">
+                                        <sap:WorkflowViewStateService.ViewState>
+                                          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                            <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                                            <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                                          </scg:Dictionary>
+                                        </sap:WorkflowViewStateService.ViewState>
+                                        <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="334,91" sap2010:WorkflowViewState.IdRef="LogMessage_12" Level="Info" Message="[&quot;Hence, postponing transaction item, without sending mail.&quot;]">
+                                          <sap:WorkflowViewStateService.ViewState>
+                                            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                              <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                                            </scg:Dictionary>
+                                          </sap:WorkflowViewStateService.ViewState>
+                                        </ui:LogMessage>
+                                        <ui:PostponeTransactionItem ContinueOnError="{x:Null}" TimeoutMS="{x:Null}" DeferDate="[DateTime.now.ToUniversalTime.AddHours(2)]" DisplayName="Postpone Transaction Item" FolderPath="[in_Config(&quot;OrchestratorFolderPath&quot;).ToString]" sap:VirtualizedContainerService.HintSize="334,22" sap2010:WorkflowViewState.IdRef="PostponeTransactionItem_13" TransactionItem="[transactionItem]" />
+                                      </Sequence>
+                                    </If.Then>
+                                    <If.Else>
+                                      <Sequence sap:VirtualizedContainerService.HintSize="376,528" sap2010:WorkflowViewState.IdRef="Sequence_48">
+                                        <sap:WorkflowViewStateService.ViewState>
+                                          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                            <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                                            <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                                          </scg:Dictionary>
+                                        </sap:WorkflowViewStateService.ViewState>
+                                        <ui:SetTransactionProgress TimeoutMS="{x:Null}" DisplayName="Set Transaction Progress" FolderPath="[in_Config(&quot;OrchestratorFolderPath&quot;).ToString]" sap:VirtualizedContainerService.HintSize="334,132" sap2010:WorkflowViewState.IdRef="SetTransactionProgress_10" Progress="[DateTime.now.ToUniversalTime.ToString]" TransactionItem="[transactionItem]" />
+                                        <ui:SendMail Bcc="{x:Null}" Cc="{x:Null}" From="{x:Null}" MailMessage="{x:Null}" Name="{x:Null}" ReplyTo="{x:Null}" SecurePassword="{x:Null}" TimeoutMS="{x:Null}" Body="[noSlotMsg]" DisplayName="Send SMTP Mail Message" Email="[in_Config(&quot;EmailFrom&quot;).ToString]" EnableSSL="True" sap:VirtualizedContainerService.HintSize="334,145" sap2010:WorkflowViewState.IdRef="SendMail_14" IsBodyHtml="True" Password="mgcgnpaemspqyjox" Port="[Convert.ToInt32(in_Config(&quot;PortNumber&quot;))]" SecureConnection="Auto" Server="smtp.gmail.com" Subject="[in_Config(&quot;EmailSubjectToUser&quot;).toString + Now.ToString(&quot; dd_MM_yyyy HH_mm_ss&quot;)]" To="[transactionItem.SpecificContent(&quot;Email&quot;).ToString]">
+                                          <ui:SendMail.Files>
+                                            <scg:List x:TypeArguments="InArgument(x:String)" Capacity="0" />
+                                          </ui:SendMail.Files>
+                                          <sap:WorkflowViewStateService.ViewState>
+                                            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                              <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                                            </scg:Dictionary>
+                                          </sap:WorkflowViewStateService.ViewState>
+                                        </ui:SendMail>
+                                        <ui:PostponeTransactionItem ContinueOnError="{x:Null}" TimeoutMS="{x:Null}" DeferDate="[DateTime.now.ToUniversalTime.AddHours(2)]" DisplayName="Postpone Transaction Item" FolderPath="[in_Config(&quot;OrchestratorFolderPath&quot;).ToString]" sap:VirtualizedContainerService.HintSize="334,79" sap2010:WorkflowViewState.IdRef="PostponeTransactionItem_14" TransactionItem="[transactionItem]" />
+                                      </Sequence>
+                                    </If.Else>
+                                  </If>
+                                </Sequence>
+                              </If.Else>
+                            </If>
+                          </Sequence>
+                        </If.Then>
+                        <If.Else>
+                          <Sequence sap:VirtualizedContainerService.HintSize="200,66" sap2010:WorkflowViewState.IdRef="Sequence_45">
+                            <sap:WorkflowViewStateService.ViewState>
+                              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                                <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                              </scg:Dictionary>
+                            </sap:WorkflowViewStateService.ViewState>
+                            <ui:SetTransactionStatus ContinueOnError="{x:Null}" Reason="{x:Null}" ServiceBaseAddress="{x:Null}" TimeoutMS="{x:Null}" DisplayName="Set Transaction Status" ErrorType="Business" FolderPath="[in_Config(&quot;OrchestratorFolderPath&quot;).ToString]" sap:VirtualizedContainerService.HintSize="334,22" sap2010:WorkflowViewState.IdRef="SetTransactionStatus_4" Status="Successful" TransactionItem="[transactionItem]">
+                              <ui:SetTransactionStatus.Analytics>
+                                <scg:Dictionary x:TypeArguments="x:String, InArgument" />
+                              </ui:SetTransactionStatus.Analytics>
+                              <ui:SetTransactionStatus.Output>
+                                <scg:Dictionary x:TypeArguments="x:String, InArgument" />
+                              </ui:SetTransactionStatus.Output>
+                            </ui:SetTransactionStatus>
+                            <ui:InvokeWorkflowFile ContinueOnError="{x:Null}" DisplayName="Invoke SendMsgViaWhatsApp workflow" sap:VirtualizedContainerService.HintSize="334,112" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_4" UnSafe="False" WorkflowFileName="SendMsgViaWhatsApp.xaml">
+                              <ui:InvokeWorkflowFile.Arguments>
+                                <InArgument x:TypeArguments="sd:DataTable" x:Key="in_slotDt">[dt]</InArgument>
+                                <InArgument x:TypeArguments="x:String" x:Key="in_FullName">[dt.Rows(0).Item(0).ToString]</InArgument>
+                                <InOutArgument x:TypeArguments="x:String" x:Key="in_startLine">[startLine]</InOutArgument>
+                                <InArgument x:TypeArguments="x:String" x:Key="in_ContactNo">[dt.Rows(0).Item(1).ToString]</InArgument>
+                                <InArgument x:TypeArguments="scg:Dictionary(x:String, x:Object)" x:Key="in_Config">[in_Config]</InArgument>
+                                <InArgument x:TypeArguments="x:Boolean" x:Key="in_singleAgeGroup">[singleAgeGroup]</InArgument>
+                              </ui:InvokeWorkflowFile.Arguments>
+                              <sap:WorkflowViewStateService.ViewState>
+                                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                  <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                  <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                                </scg:Dictionary>
+                              </sap:WorkflowViewStateService.ViewState>
+                            </ui:InvokeWorkflowFile>
+                            <ui:InvokeWorkflowFile ContinueOnError="{x:Null}" DisplayName="Invoke FormHTMLTable workflow" sap:VirtualizedContainerService.HintSize="334,112" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_5" UnSafe="False" WorkflowFileName="FormHTMLTable.xaml">
+                              <ui:InvokeWorkflowFile.Arguments>
+                                <InArgument x:TypeArguments="sd:DataTable" x:Key="in_slotDt">[dt]</InArgument>
+                                <InArgument x:TypeArguments="scg:Dictionary(x:String, x:Object)" x:Key="Config">[in_Config]</InArgument>
+                                <InArgument x:TypeArguments="ui:QueueItem" x:Key="transactionItem">[transactionItem]</InArgument>
+                                <InArgument x:TypeArguments="x:String" x:Key="in_startLine">[startLine]</InArgument>
+                              </ui:InvokeWorkflowFile.Arguments>
+                            </ui:InvokeWorkflowFile>
+                          </Sequence>
+                        </If.Else>
+                      </If>
+                    </Sequence>
+                  </If.Else>
+                </If>
+              </Sequence>
+            </If.Then>
+          </If>
+        </Sequence>
+      </ui:InterruptibleWhile.Body>
+      <ui:InterruptibleWhile.Condition>
+        <mva:VisualBasicValue x:TypeArguments="x:Boolean" ExpressionText="numberOfQueueItem &lt;&gt; 0" sap2010:WorkflowViewState.IdRef="VisualBasicValue`1_1" />
+      </ui:InterruptibleWhile.Condition>
+      <sap:WorkflowViewStateService.ViewState>
+        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          <x:Boolean x:Key="IsPinned">False</x:Boolean>
+        </scg:Dictionary>
+      </sap:WorkflowViewStateService.ViewState>
+    </ui:InterruptibleWhile>
+  </Sequence>
+</Activity>
